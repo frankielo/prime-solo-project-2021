@@ -34,5 +34,3 @@ module.exports = cookieSession({
   maxAge: 1000 * 60 * 60 * 24 * 7, // Set to 7 days - 1000ms * 60 seconds * 60 minutes * 24 hours * 7 days
   secure: false,
 });
-
-// maxAge: 1000 * 60 * 60 * 24 * 1, // Set to 7 days - 1000ms * 60 seconds * 60 minutes * 24 hours * 7 days
