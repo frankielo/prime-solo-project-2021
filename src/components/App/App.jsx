@@ -8,7 +8,9 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from '../Nav/Nav';
+// import Nav from '../Nav/Nav';
+
+
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -19,6 +21,12 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Header from '../Header/Header'
+import PostForm from '../PostForm/PostForm'
+import ManagePosts from '../ManagePosts/ManagePosts'
+import Categories from '../Categories/Categories'
+import AdminPosts from '../AdminPosts/AdminPosts'
+import Blogs from '../Blogs/Blogs'
 
 import './App.css';
 
@@ -29,17 +37,30 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type : 'FETCH_CATEGORIES'})
   }, [dispatch]);
 
   return (
     <Router>
       <div>
-        <Nav />
+        <Header/>
+        {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
+
+
+          
+          <Route
+            exact
+            path="/blogs"
+          >
+            <Blogs />
+          </Route>
+
+
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
@@ -47,6 +68,23 @@ function App() {
           >
             <AboutPage />
           </Route>
+
+          <ProtectedRoute
+          exact
+          path="/postform"
+          >
+            <PostForm/>
+          </ProtectedRoute>
+          <ProtectedRoute
+          exact
+          path="/manageposts"
+          >
+            <ManagePosts/>
+          </ProtectedRoute>
+
+
+
+
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -67,6 +105,8 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+          
+
 
           <Route
             exact
@@ -110,9 +150,33 @@ function App() {
             }
           </Route>
 
+          <Route
+            exact
+            path="/categories"
+          >
+            {user.user_role !== "admin" ?
+              <h1>404 : PAGE NOT FOUND</h1>
+              :
+              <Categories />
+            }
+          </Route>
+
+
+          <Route
+            exact
+            path="/adminpost"
+          >
+            {user.user_role !== "admin" ?
+              <h1>404 : PAGE NOT FOUND</h1>
+              :
+              <AdminPosts />
+            }
+          </Route>
+
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <h1>404 : PAGE NOT FOUND</h1>
           </Route>
         </Switch>
         <Footer />
