@@ -40,12 +40,12 @@ export default function Header() {
           )}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/home" className="headerLink">
-                <h2 className="nav-title">Prime Solo Project</h2>
+                <h2 className="nav-title">DaBlogz</h2>
             </Link>
           </Typography>
 
 
-          {user.id === null &&
+          {!user.id &&
           <Link to="/login" className="headerLink">
               Login / Register
           </Link>
@@ -53,9 +53,6 @@ export default function Header() {
 
         {user.id && (
           <>
-            <Link to="/user" className="headerLink">
-              Home
-            </Link>
 
             <Link to="/info" className="headerLink">
               Info Page

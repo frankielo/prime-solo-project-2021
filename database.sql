@@ -24,13 +24,13 @@ CREATE TABLE posts (
 	"post_userid" bigint NOT NULL,
 	FOREIGN KEY ("post_author") REFERENCES "user"(username) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY ("post_userid") REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
 
 CREATE TABLE categories (
 	id SERIAL PRIMARY KEY,
 	"cat_title" varchar(255) NOT NULL UNIQUE
-)
+);
 
 CREATE TABLE categories_posts (
 	id SERIAL PRIMARY KEY,

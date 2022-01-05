@@ -23,7 +23,6 @@ function* getPublishedPost() {
     const response = yield  axios.get("/api/posts")   
     
     yield put({ type: 'SET_PUBLISHED_POSTS', payload : response.data });
-    // console.log(response.data,'coming from saga')
   } catch (error) {
     console.log('Error with get published post saga:', error);
 

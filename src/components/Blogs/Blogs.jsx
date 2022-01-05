@@ -98,9 +98,9 @@ const Blogs = () => {
       </Grid>
         )}
 
-      <Grid item>
+      {/* <Grid item>
             <Pagination count={500} page={page} onChange={handleChange} />
-      </Grid>
+      </Grid> */}
       </Grid>
     )
 }
