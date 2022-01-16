@@ -27,6 +27,8 @@ import ManagePosts from '../ManagePosts/ManagePosts'
 import Categories from '../Categories/Categories'
 import AdminPosts from '../AdminPosts/AdminPosts'
 import Blogs from '../Blogs/Blogs'
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../ui/Theme";
 
 import './App.css';
 
@@ -41,6 +43,8 @@ function App() {
   }, [dispatch]);
 
   return (
+
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Header/>
@@ -182,6 +186,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

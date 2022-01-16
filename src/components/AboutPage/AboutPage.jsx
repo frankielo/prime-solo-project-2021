@@ -10,27 +10,17 @@ import Typography from '@mui/material/Typography'
 
 function AboutPage() {
   return (
-    <Grid container direction="column" alignContent="center" style={{marginTop: "3rem"}} spacing={2}>
-      <Grid item>
-        <Typography variant="h4">Hello World</Typography>
+      <Grid container direction="column" alignItems="center" style={{marginTop:"3rem"}} spacing={2}>
+        <Grid item>
+          <Typography variant="h4">Hi Everyone</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="body2">My name is Franke aoishfa sdhf ahsdl fkahs lkfj aklsfdgj alkf glkas gfklga skflg klasfgalkfkas fgalskf jgask fgklas fglas f</Typography>
+        </Grid>
+        <Grid item>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREglc1sxZt7EeowD56vPfQ5LVDiXxLTifDmw&usqp=CAU" alt="My picture" width="200"/>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Typography variant="body1">My name is Frankie Lopez and I am a Full Stack Web Developer.</Typography>
-      </Grid>
-      <Grid item>
-        <Typography variant="h4">Technologies</Typography>
-        <ul>
-          <li>Node</li>
-          <li>Express</li>
-          <li>React w/ Hooks, Redux, Saga</li>
-          <li>Passport w/ Local Authentication</li>
-          <li>Postgresql</li>
-          <li>Heroku</li>
-          <li>Moment.js</li>
-          <li>MUI, MUI Icons</li>
-        </ul>
-      </Grid>
-    </Grid>
   );
 }
 

@@ -16,7 +16,15 @@ const upload = multer({storage})
 router.get('/', (req, res) => {
   // GET route code here for guests
 
-  const queryText = `SELECT * FROM posts  WHERE post_status ='published' ORDER BY id DESC;`
+  // const queryText = `SELECT * FROM posts  WHERE post_status ='published' ORDER BY id DESC;`
+
+  const queryText = `
+  SELECT posts.id, posts.post_title, posts.post_author, posts.post_date, posts.post_image_url, posts.post_content, array_agg(categories.cat_title) as categoryList 
+  FROM posts JOIN categories_posts ON categories_posts.post_id = posts.id JOIN categories ON categories_posts.category_id = categories.id 
+  WHERE posts.post_status = 'published'
+  GROUP BY posts.id
+  ORDER BY posts.id DESC;
+  `
 
   pool.query(queryText)
     .then((response) => res.send(response.rows))
@@ -114,8 +122,10 @@ router.put('/user/:id', rejectUnauthenticated , async (req, res) => {
   const postId = req.params.id
   const {title, content, catId} = req.body
 
+  console.log(req.body)
+
   const queryText =  `UPDATE posts
-  SET post_title = $1, post_content = $2, post_status = 'draft'
+  SET post_title = $1, post_content = $2
   WHERE id = $3 AND post_userid = $4;`
 
   const queryDeleteText = `DELETE FROM categories_posts WHERE post_id = $1`
@@ -208,7 +218,7 @@ router.put('/image/:id', rejectUnauthenticated , upload.single('image'), async (
   const getImageNameQuery =  `SELECT post_image_name FROM posts WHERE id = $1 AND post_userid = $2;`
 
   const queryText =  `UPDATE posts
-  SET post_image_url = $1, post_image_name = $2, post_status = 'draft'
+  SET post_image_url = $1, post_image_name = $2
   WHERE id = $3 AND post_userid = $4 RETURNING post_image_url;`
 
 
@@ -230,4 +240,48 @@ router.put('/image/:id', rejectUnauthenticated , upload.single('image'), async (
 
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+// router.post('/', rejectUnauthenticated , async (req, res) => {
+//   // POST route code here
+//   const client = await pool.connect();
+
+//   try {
+  
+//   const {title, image, content, catId} = req.body
+
+//   const queryText =  `INSERT INTO "posts" ("post_title", "post_author", "post_image", "post_content", "post_userid")
+//   VALUES ($1, $2, $3, $4, $5) RETURNING id`
+
+//   const queryJunctionText = `INSERT INTO "categories_posts" ("post_id", "category_id")
+//   VALUES ($1, $2)`
+
+
+//   await client.query('BEGIN')
+//     const response = await client.query(queryText,[title, req.user.username, image,  content, req.user.id])
+//     const id = response.rows[0].id
+
+//     await Promise.all(catId.map((element) => {
+//        return client.query(queryJunctionText,[id,element])
+//     }))
+//     await client.query('COMMIT')
+//     res.sendStatus(201)
+//   } catch (error) {
+//     await client.query('ROLLBACK')
+//     console.log('Creating posts error ', error);
+//       res.sendStatus(500);
+//   }
+//   finally {
+//     client.release()
+//   }
+// });
 

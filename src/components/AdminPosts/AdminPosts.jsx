@@ -19,7 +19,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import Typography from '@mui/material/Typography';
-
+import "./AdminPosts.css";
 import axios from 'axios'
 
 
@@ -170,7 +170,8 @@ export default function AdminPosts() {
                 {row.post_date.split('T')[0]}
               </TableCell>
               <TableCell style={{ width: 80 }}>
-                <img src={row.post_image_url} alt={row.post_title} width="50" />
+                <img src={row.post_image_url} alt={row.post_title} width="50"
+                className="zoom"/>
               </TableCell>
               <TableCell style={{ width: 160 }}>
                 {row.post_content}

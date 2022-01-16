@@ -10,6 +10,14 @@ const setPosts = (state = [], action) => {
     }
   };
 
+  // const filteredList = availableToys.filter(toy=>
+  //   {
+  //   return (toy.name.toLowerCase().includes(nameFilter.toLowerCase()) && 
+  //   (!zipFilter || toy.zip_code == zipFilter) && 
+  //   (!user.id || user.id != toy.toys_userid)
+  //   )}
+  //  )
+
 
 const editPost = (state = [], action) => {
     switch (action.type) {
@@ -31,6 +39,17 @@ const editPost = (state = [], action) => {
     }
   };
 
+
+  const searchQuery = (state = "", action) => {
+    switch (action.type) {
+      case 'SEARCH_QUERY':
+        return action.payload;
+      default:
+        return state;
+    }
+  };
+
+
   const allPost = (state = [], action) => {
     switch (action.type) {
       case 'SET_ALL_POSTS':
@@ -49,6 +68,7 @@ export default combineReducers({
   setPosts,
   editPost,
   publishedPost,
-  allPost
+  allPost,
+  searchQuery
 });
   

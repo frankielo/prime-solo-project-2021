@@ -2,6 +2,7 @@ import React,{useEffect}  from 'react';
 import {useDispatch} from 'react-redux'
 import {useSelector} from 'react-redux'
 import PropTypes from 'prop-types';
+import { makeStyles } from '@mui/styles';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -23,7 +24,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios'
 import swal from 'sweetalert';
 import {Link} from 'react-router-dom'
-
+import './ManagePosts.css'
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -46,6 +47,8 @@ function TablePaginationActions(props) {
   const handleLastPageButtonClick = (event) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
+
+
 
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
@@ -89,10 +92,21 @@ TablePaginationActions.propTypes = {
 };
 
 
+const useStyles = makeStyles({
+  tableHead : {
+    backgroundColor : "orange",
+  },
+  tableCell : {
+    color:"white",
+    fontWeight : "bold"
+  }
+});
+
 
 export default function ManagePosts() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const classes = useStyles()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -100,6 +114,7 @@ export default function ManagePosts() {
          type : 'FETCH_POST'
      })
   }, [])
+
 
   const onEditHandler = (rowValues)=>{
 
@@ -161,7 +176,7 @@ export default function ManagePosts() {
     <TableContainer component={Paper} style={{maxWidth:"90%",margin:"auto",marginTop:"5rem"}}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
 
-      <TableHead>
+      <TableHead className={classes.tableHead}>
           <TableRow>
             <TableCell>Title</TableCell>
             <TableCell >Author</TableCell>
@@ -190,8 +205,8 @@ export default function ManagePosts() {
               <TableCell style={{ width: 80 }} >
                 {row.post_date.split('T')[0]}
               </TableCell>
-              <TableCell style={{ width: 80 }}>
-                <img src={row.post_image_url} alt={row.post_title} width="50" />
+              <TableCell style={{ width: 80 }} >
+                <img src={row.post_image_url} alt={row.post_title} width="50" className="zoom"/>
               </TableCell>
               <TableCell style={{ width: 160 }}>
                 {row.post_content}
