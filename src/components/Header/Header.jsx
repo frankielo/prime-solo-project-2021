@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import techlogo from '../../assets/tekBlogz.svg'
+import techlogo from '../../assets/tekBlogz.png'
 import './Header.css'
 import Drawer from '../Drawer/Drawer'
 import { makeStyles } from '@mui/styles';

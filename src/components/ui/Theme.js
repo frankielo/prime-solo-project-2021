@@ -39,26 +39,30 @@ export default createTheme({
         lineHeight:1.5
     },
     h3:{
-        fontFamily: "Pacifico",
+        fontFamily: "'Montserrat', sans-serif",
         fontSize:"2.5rem",
         color:arcBlue,
     },
     h4:{
-        fontFamily: "Raleway",
-        fontWeight:700,
+        fontFamily: "'Montserrat', sans-serif",
+        fontWeight:600,
         fontSize:"1.75rem",
         color:arcBlue,
         lineHeight:1.5
     },
+    h5:{
+        fontWeight:400,
+        fontFamily: "'Montserrat', sans-serif",
+        fontSize:"1.75rem",
+    },
     h6:{
         fontWeight:500,
-        fontFamily:"Raleway",
-        color:arcBlue
+        fontFamily: "'Montserrat', sans-serif"
     },
     subtitle1:{
-        fontSize:"1.25rem",
+        fontSize:"1.1rem",
         fontWeight:300,
-        color:arcGrey
+        fontFamily: "'Montserrat', sans-serif"
     },
     subtitle2:{
         fontSize:"1.25rem",
@@ -67,7 +71,8 @@ export default createTheme({
     },
     body1:{
         fontSize:"1.25rem",
-        fontWeight:300
+        fontFamily: "'Montserrat', sans-serif",
+        fontWeight:400
     },
     learnButton:{
         borderColor:arcBlue,

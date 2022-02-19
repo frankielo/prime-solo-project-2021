@@ -1,0 +1,21 @@
+.main-container {
+    width: 90%;
+    margin-left: 5rem
+}
+
+.owner-surname {
+    color: #1C7ED6;
+}
+
+.paper-container {
+    width: 90%;
+    height: 4rem;
+}
+
+.paper-image {
+    margin-left: 1rem;
+}
+
+.technology-container{
+    margin-top: 2rem !important
+}
