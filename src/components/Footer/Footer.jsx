@@ -21,9 +21,13 @@ const useStyles = makeStyles(theme=>({
 
         // zIndex: 1302,
         // position:"relative"
-        marginTop:"21rem",
+        // marginTop:"21rem",
         border:"2px solid #DEE2E6",
-        padding:"1rem"
+        padding:"1rem",
+        position:"relative",
+        left:0,
+        bottom:0,
+        right:0
     },
     adornment:{
         width:"25em",

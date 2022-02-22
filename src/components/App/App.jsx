@@ -46,7 +46,7 @@ function App() {
 
     <ThemeProvider theme={theme}>
     <Router>
-      <div>
+      <div style={{minHeight:"100%",marginBottom:"2rem"}}>
         <Header/>
         {/* <Nav /> */}
         <Switch>
@@ -183,8 +183,9 @@ function App() {
             <h1>404 : PAGE NOT FOUND</h1>
           </Route>
         </Switch>
-        <Footer />
+        
       </div>
+      <Footer />
     </Router>
     </ThemeProvider>
   );

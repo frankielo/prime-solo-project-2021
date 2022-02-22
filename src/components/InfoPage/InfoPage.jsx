@@ -48,7 +48,7 @@ function InfoPage() {
                <Typography variant="body1">Set up an account with us and share your ideas, tips and tricks in one or more of our categories. Our admins will review your draft and it will be published within a week. Or explore our website for quality content posted by other knowledgeable members. </Typography>          
             </Grid>
             <Grid item className={classes.longText}>
-               <Typography variant="body1">If your draft is not published within a week, you want to suggest more categories or you want a similar CMS (Content Management System) for your business. Please feel free to  <span>
+               <Typography variant="body1">If your draft is not published within a week, you want to suggest more categories or you want a similar CMS for your business. Please feel free to  <span>
                <a href="mailto:franki@gmail.com" style={{color:"inherit"}}>Contact Me.</a>
                  </span></Typography>          
             </Grid>

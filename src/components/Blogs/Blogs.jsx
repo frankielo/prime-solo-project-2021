@@ -25,7 +25,19 @@ import PropTypes from 'prop-types';
 import TablePagination from '@mui/material/TablePagination';
 import expandIcon from '../../assets/expandIcon.png'
 var moment = require('moment')
+import Modal from '@mui/material/Modal';
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -111,9 +123,9 @@ const Blogs = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(12);
     const [selectedCategory,setSelectedCategory] = useState("All")
-
+    const [open, setOpen] = React.useState(false);
     const categories = useSelector(state => state.category.setCategories)
-
+    const [image, setImage] = useState("")
     const searchQuery = useSelector(state => state.post.searchQuery)
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -192,6 +204,7 @@ const Blogs = () => {
           height="194"
           image={post.post_image_url}
           alt={post.post_title}
+          onClick={()=>{setOpen(true);setImage(post.post_image_url)}}
         />
         <CardContent style={{padding:10}}>
           <Typography variant="body1" color="text.secondary">
@@ -245,6 +258,14 @@ const Blogs = () => {
 
       </Grid>
       </Grid>
+      <Modal
+        open={open}
+        onClose={()=>{setOpen(false);setImage("")}}
+      >
+        <Box sx={style}>
+            <img src={image} alt="my image" />
+        </Box>
+      </Modal>
       </>
     )
 }

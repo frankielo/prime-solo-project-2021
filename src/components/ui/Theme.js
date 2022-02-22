@@ -15,7 +15,7 @@ export default createTheme({
             main:arcBlue
         },
         secondary:{
-            main:arcOrange
+            main:"#000000"
         }
     },
     typography:{
@@ -94,6 +94,7 @@ export default createTheme({
 },
 components: {
 MuiButton: {
+
     variants: [
       {
         props: { variant: 'contained' },
@@ -101,19 +102,14 @@ MuiButton: {
           backgroundColor: "#1C7ED6",
           color:"white"
         },
+        
       }
     ],
   },
   MuiTextField: {
-    variants: [
-      {
-        props: { variant: 'outlined' },
-        style: {
-            borderColor: `black !important`,
-            borderWidth: '0.1px'
-        },
-      }
-    ],
+    defaultProps: {
+      color: "secondary"
+    }
   },
   MuiInputLabel : {
     variants: [
@@ -125,6 +121,15 @@ MuiButton: {
         }
       ]
   }
+},
+MuiSelect : {
+  styleOverrides: {
+    // Name of the slot
+    multiple: {
+      // Some CSS
+      backgroundColor: 'blue',
+    },
+}
 }
 // overrides: {
 //     MuiButton: {

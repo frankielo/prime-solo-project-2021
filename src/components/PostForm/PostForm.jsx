@@ -32,12 +32,12 @@ const useStyles = makeStyles({
     notchedOutline: {
       borderWidth: '0.1px'
     },
-    inputLabel: {
-      color: "black !important",
-      "&.Mui-focused": {
-        color: "black !important"
-      }
-    }
+    // inputLabel: {
+    //   color: "black !important",
+    //   "&.Mui-focused": {
+    //     color: "black !important"
+    //   }
+    // }
   });
 
 
@@ -178,6 +178,7 @@ const PostForm = () => {
                 InputLabelProps={{
                   style: { color: 'black' },
                 }}
+                color = "secondary"
                 // InputProps={{
                 //   classes: {
                 //     root: classes.cssOutlinedInput,
@@ -189,7 +190,7 @@ const PostForm = () => {
             </Grid>
             <Grid item>
             <FormControl sx={{ width: 300 }}>
-            <InputLabel className={classes.inputLabel} classes={{ focused: classes.inputFocused }}>Select Category</InputLabel>
+            <InputLabel >Select Category</InputLabel>
             <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
@@ -199,10 +200,11 @@ const PostForm = () => {
                 inputProps={{
                   style : {borderColor:"black !important"}
                 }}
+                input={<OutlinedInput label="Select Category" />}
                 MenuProps={MenuProps}
                 variant="outlined"
                 className={classes.select}
-                
+                color = "secondary"
              >
                 {categoryList.map((category) => (
                     <MenuItem
@@ -263,13 +265,7 @@ const PostForm = () => {
             InputLabelProps={{
               style: { color: 'black' },
             }}
-            // InputProps={{
-            //   classes: {
-            //     root: classes.cssOutlinedInput,
-            //     focused: classes.cssFocused,
-            //     notchedOutline: classes.notchedOutline,
-            //   }
-            // }}
+            color = "secondary"
             />
         </Grid>
         
