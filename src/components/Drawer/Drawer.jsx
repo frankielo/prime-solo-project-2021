@@ -8,27 +8,25 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { makeStyles } from '@mui/styles';
-import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
-import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
-import CategoryIcon from '@mui/icons-material/Category';
-import PublishIcon from '@mui/icons-material/Publish';
+import navigationIcon from '../../assets/navigationIcon.png'
+import manageCategories from '../../assets/manageCategories.png'
+import managePosts from '../../assets/managePosts.png'
+import publishPost from '../../assets/publishPost.png'
+import createPosts from '../../assets/createPosts.png'
 
-// const useStyles = makeStyles(theme=>({
-//   drawer:{
-//     backgroundColor :theme.palette.common.blue
-//   },
-//   drawerItem:{
-//     ...theme.typography.tab,
-//     color:"white",
-//     opacity:0.7
-//   }
-// }))
+const useStyles = makeStyles(theme=>({
+  navigation:{
+    marginLeft:"2rem",
+    marginTop:"1rem",
+    marginBottom:"1rem"
+  }
+}))
 
 
 export default function Drawer(props) {
 
   const user  = useSelector(state => state.user)
-  // const classes = useStyles()
+  const classes = useStyles()
 
 
   const routes = 
@@ -47,15 +45,13 @@ export default function Drawer(props) {
     const giveIcon = (name) => {
       switch (name) {
         case 'Create New Post':
-          return <CreateNewFolderIcon/>;
+          return  <img src={createPosts} alt="Create New Post" />;
           case 'Manage Posts':
-            return <SettingsApplicationsIcon/>;
+            return <img src={managePosts} alt="Manage Posts" /> ;
             case 'Manage Categories':
-              return <CategoryIcon/>;
+              return <img src={manageCategories} alt="Manage Categories"/>;
               case 'Publish Posts':
-                return <PublishIcon/>;
-
-      
+                return <img src={publishPost} alt="Publish Posts" /> ;      
         default:
           break;
       }
@@ -69,7 +65,7 @@ export default function Drawer(props) {
       
       PaperProps={{
         sx: {
-          backgroundColor: "#33a137",
+          backgroundColor: "#F1F3F5",
           color: "white"
         }
       }}
@@ -78,11 +74,16 @@ export default function Drawer(props) {
       >
 
         <List >
+            <ListItem className={classes.navigation}>
+                   <ListItemIcon>
+                      <img src={navigationIcon} alt="Navigation" />
+                   </ListItemIcon>
+                    <ListItemText primary="Navigation" />
+              </ListItem>   
            {routes.map((route,index)=>(
                 <ListItem key = {index} button component={Link} to={route.link} >
                    <ListItemIcon>
-                      {giveIcon(route.name)}
-                      
+                      {giveIcon(route.name)}  
                    </ListItemIcon>
                     <ListItemText primary={route.name} />
                 </ListItem>             

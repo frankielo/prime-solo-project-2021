@@ -198,14 +198,14 @@ router.delete('/:id', rejectUnauthenticated, rejectUnauthorized, (req, res) => {
 router.delete('/user/:id', rejectUnauthenticated, async (req, res) => {
   // DELETE route code here
   const {id} = req.params
-  const queryText =  `DELETE FROM posts WHERE id = $1 AND post_userid = $2 AND status = 'available' 
+  const queryText =  `DELETE FROM posts WHERE id = $1 AND post_userid = $2 
   RETURNING post_image_name`
   try {
       const response = await pool.query(queryText,[id,req.user.id])
       await cloudinary.uploader.destroy(response.rows[0].post_image_name)
       res.sendStatus(200)
   } catch (error) {
-    console.log('Deleting posts error ', err);
+    console.log('Deleting posts error ', error);
     res.sendStatus(500);
   }
   

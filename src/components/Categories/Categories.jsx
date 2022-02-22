@@ -21,12 +21,15 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import EditIcon from '@mui/icons-material/Edit';
+import deleteIcon from '../../assets/deleteIcon.png'
+import editIcon from '../../assets/editIcon.png'
 import axios from 'axios'
 import swal from 'sweetalert';
-import {Link} from 'react-router-dom'
-
+import InputAdornment from '@mui/material/InputAdornment';
+import addButton from '../../assets/addButton.png'
+import SaveAsIcon from '@mui/icons-material/SaveAs';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -125,6 +128,7 @@ export default function Categories() {
   }
 
 
+
   const categoryList = useSelector(state => state.category.setCategories)
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -181,9 +185,21 @@ export default function Categories() {
             label={editMode ? "Edit a category" : "Add a Category"}
             value={ editMode ? editTitle : category}
             onChange={editMode ? (e)=>setEditTitle(e.target.value) : (e)=>setCategory(e.target.value)}
+            InputProps={{
+              endAdornment: <InputAdornment position="end">
+                  {!editMode ?
+                  <IconButton onClick={onAddCategory}>
+                    <img src={addButton} alt="add icon" />
+                  </IconButton> : 
+                  <IconButton onClick={onSaveEdit} size="large">
+                    <SaveAsIcon style={{ color: '#1C7ED6' }} />
+                  </IconButton>
+                  }
+              </InputAdornment>,
+            }}
         />
         </Grid>
-        { editMode ?
+        {/* { editMode ?
             <Grid item>
                 <Button variant="contained" onClick={onSaveEdit}>Save New Title</Button>
             </Grid> :
@@ -191,7 +207,7 @@ export default function Categories() {
             <Button variant="contained" onClick={onAddCategory}>Add</Button>
         </Grid>
 
-        }
+        } */}
     </Grid>
     <Grid item container>
     <TableContainer component={Paper}>
@@ -212,20 +228,20 @@ export default function Categories() {
             : categoryList
           ).map((row,index) => (
             <TableRow key={row.id}>
-              <TableCell style={{ width: 120 }}>
+              <TableCell style={{ width: 20 }}>
                 {row.id}
               </TableCell>
-              <TableCell style={{ width: 80 }} >
+              <TableCell style={{ width: 320 }} >
                 {row.cat_title}
               </TableCell>
-              <TableCell style={{ width: 80 }} >
+              <TableCell style={{ width: 10 }} >
               <IconButton onClick={()=>{onDeleteHandler(row.id)}}>
-                  <DeleteIcon />
+                  <img src={deleteIcon} alt="delete icon" />
               </IconButton>
               </TableCell>
-              <TableCell style={{ width: 80 }} >
+              <TableCell style={{ width: 10 }} >
               <IconButton onClick={()=>{setEditTitle(row.cat_title);setEditRowId(row.id);setEditMode(true)}}>
-                  <EditIcon />
+                  <img src={editIcon} alt="edit icon" />
               </IconButton>
               </TableCell>
               

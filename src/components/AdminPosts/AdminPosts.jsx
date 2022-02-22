@@ -19,15 +19,30 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import Typography from '@mui/material/Typography';
-import "./AdminPosts.css";
-import axios from 'axios'
+import styles from './AdminPosts.module.css'
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  tableHead : {
+    backgroundColor : "#1C7ED6"
+  },
+  tableCell : {
+    color:"white",
+    fontWeight : "bold"
+  },
+  tableRow: {
+    "& td": {
+      color: "white !important"
+    }
+  }
+});
 
 
 
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
-
+ 
 
 
   const handleFirstPageButtonClick = (event) => {
@@ -93,7 +108,8 @@ export default function AdminPosts() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const dispatch = useDispatch()
-
+  const classes = useStyles()
+  
   useEffect(() => {
      dispatch({
          type : 'FETCH_ALL_POSTS'
@@ -110,14 +126,6 @@ export default function AdminPosts() {
         payload : {rowId,status}
     })
 
-    // axios.put(`/api/posts/${rowId}`,{status})
-
-    // dispatch({
-    //     type : 'FETCH_ALL_POSTS'
-    // })
-    // dispatch({
-    //     type : 'FETCH_PUBLISHED_POSTS'
-    // })
 
   }
 
@@ -142,8 +150,8 @@ export default function AdminPosts() {
     <TableContainer component={Paper}  style={{maxWidth:"90%",margin:"auto",marginTop:"5rem"}}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
 
-      <TableHead>
-          <TableRow>
+      <TableHead className={classes.tableHead}>
+          <TableRow className={styles.tableHead}>
             <TableCell>Title</TableCell>
             <TableCell >Author</TableCell>
             <TableCell >Date</TableCell>
@@ -170,8 +178,7 @@ export default function AdminPosts() {
                 {row.post_date.split('T')[0]}
               </TableCell>
               <TableCell style={{ width: 80 }}>
-                <img src={row.post_image_url} alt={row.post_title} width="50"
-                className="zoom"/>
+                <img src={row.post_image_url} alt={row.post_title} width="50" className={styles.zoom}/>
               </TableCell>
               <TableCell style={{ width: 160 }}>
                 {row.post_content}
@@ -181,7 +188,7 @@ export default function AdminPosts() {
               </TableCell>
               <TableCell style={{ width: 80 }} >
 
-                <Typography paragraph style={{cursor:"pointer", textDecoration:"underline",color:"blue"}}
+                <Typography paragraph style={{cursor:"pointer", textDecoration:"underline",color:"#1C7ED6"}}
                 onClick = {()=>{onEditCategory(row.id,row.post_status)}}
                 >  {row.post_status === "draft" ? "Activate" : "Deactivate"}  </Typography>
 

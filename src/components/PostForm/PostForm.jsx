@@ -22,8 +22,24 @@ import SaveIcon from '@mui/icons-material/Save';
 const useStyles = makeStyles({
     mainContainer:{
         marginTop : "3rem"
+    },
+    cssOutlinedInput: {
+      '&$cssFocused $notchedOutline': {
+        borderColor: `black !important`,
+      }
+    },
+    cssFocused: {},
+    notchedOutline: {
+      borderWidth: '0.1px'
+    },
+    inputLabel: {
+      color: "black !important",
+      "&.Mui-focused": {
+        color: "black !important"
+      }
     }
   });
+
 
   const getStyles = (name, selectedCat, theme) => {
     return {
@@ -159,19 +175,34 @@ const PostForm = () => {
                 label="Title"
                 value={title}
                 onChange={(e)=>{setTitle(e.target.value)}}
+                InputLabelProps={{
+                  style: { color: 'black' },
+                }}
+                // InputProps={{
+                //   classes: {
+                //     root: classes.cssOutlinedInput,
+                //     focused: classes.cssFocused,
+                //     notchedOutline: classes.notchedOutline,
+                //   }
+                // }}
                 />
             </Grid>
             <Grid item>
             <FormControl sx={{ width: 300 }}>
-            <InputLabel id="demo-multiple-name-label">Select Category</InputLabel>
+            <InputLabel className={classes.inputLabel} classes={{ focused: classes.inputFocused }}>Select Category</InputLabel>
             <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 multiple
                 value={selectedCat}
                 onChange={handleChange}
-                input={<OutlinedInput label="Select Category" />}
+                inputProps={{
+                  style : {borderColor:"black !important"}
+                }}
                 MenuProps={MenuProps}
+                variant="outlined"
+                className={classes.select}
+                
              >
                 {categoryList.map((category) => (
                     <MenuItem
@@ -229,6 +260,16 @@ const PostForm = () => {
             fullWidth
             value={content}
             onChange={(e)=>{setContent(e.target.value)}}
+            InputLabelProps={{
+              style: { color: 'black' },
+            }}
+            // InputProps={{
+            //   classes: {
+            //     root: classes.cssOutlinedInput,
+            //     focused: classes.cssFocused,
+            //     notchedOutline: classes.notchedOutline,
+            //   }
+            // }}
             />
         </Grid>
         
@@ -242,7 +283,6 @@ const PostForm = () => {
             <Button  component={Link} to={'/manageposts'} variant="contained">Cancel</Button>
         </Grid>
         </Grid>
-
           : 
         <Grid container item style={{maxWidth:"50%"}} spacing={2}>
         <Grid item>

@@ -39,10 +39,18 @@ function InfoPage() {
           </Grid>
           <Grid container item direction="column" xs={5} className={classes.paragraphContainer}>
             <Grid item >
-               <Typography className={classes.typographyClass} variant="h4">Lorem ipsum dolor sit amet, consetetur sadipscing...</Typography>
+               <Typography className={classes.typographyClass} variant="h4">Thank you for visiting TekBlogz! A blog where we can share information about the technologies in software development....</Typography>
             </Grid>
             <Grid item className={classes.longText}>
-               <Typography variant="body1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Typography>          
+               <Typography variant="body1">This Application enables users to create and manage blogs based on topics of interest having to do with Full Stack Web Developement.</Typography>          
+            </Grid>
+            <Grid item className={classes.longText}>
+               <Typography variant="body1">Set up an account with us and share your ideas, tips and tricks in one or more of our categories. Our admins will review your draft and it will be published within a week. Or explore our website for quality content posted by other knowledgeable members. </Typography>          
+            </Grid>
+            <Grid item className={classes.longText}>
+               <Typography variant="body1">If your draft is not published within a week, you want to suggest more categories or you want a similar CMS (Content Management System) for your business. Please feel free to  <span>
+               <a href="mailto:franki@gmail.com" style={{color:"inherit"}}>Contact Me.</a>
+                 </span></Typography>          
             </Grid>
           </Grid>
       </Grid>

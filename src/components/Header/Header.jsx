@@ -15,12 +15,13 @@ import { useSelector } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router'
 
 const useStyles = makeStyles(theme=>({
   appbar:{
     zIndex:theme.zIndex.modal + 1,
-    marginBottom:"3rem"
+    marginBottom:"3rem",
+    border:"2px solid #DEE2E6"
   },
   navLinks : {
     textDecoration:"none",
@@ -81,15 +82,13 @@ export default function Header() {
   const user = useSelector((store) => store.user); 
   const dispatch = useDispatch();
   const classes = useStyles()
+  const location = useLocation()
+  
 
   const onSearchBlogs = (e) => {
     dispatch ( {type : 'SEARCH_QUERY',
                 payload : e.target.value })
   }
-
-  
-    const location = useLocation();
-  
 
   return (
 
@@ -111,7 +110,7 @@ export default function Header() {
           </>
           )}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/home" className="headerLink">
+            <Link to="/blogs" className="headerLink">
                 <img src={techlogo} alt="tech logo" width="150"/>
                 {/* <h2 className="nav-title">Prime Solo Project</h2> */}
             </Link>
@@ -129,19 +128,11 @@ export default function Header() {
           </Search>
           }
 
-          {!user.id === null &&
-          <Link to="/login" className="headerLink">
-              Login / Register
-          </Link>
-          }
         <Grid container spacing={2} justifyContent="flex-end">
-        {user.id && (
-          <>
-            
               <Grid item>
-            {/* <Typography variant = "body1" component = {Link} to = "/home" className = {classes.navLinks}>
-              Home 
-            </Typography> */}
+            <Typography variant = "body1" component = {Link} to = "/blogs" className = {classes.navLinks}>
+              Blogs 
+            </Typography>
             </Grid>
             <Grid item>
             <Typography variant = "body1" component = {Link} to = "/info" className = {classes.navLinks}>
@@ -149,36 +140,21 @@ export default function Header() {
             </Typography>
             </Grid>
             <Grid item>
+            <Typography variant = "body1" component = {Link} to = "/about" className = {classes.navLinks}>
+              About
+            </Typography>
+            </Grid>
+            <Grid item>
+            {!user.id ?
+            <Typography variant = "body1" component = {Link} to = "/login" className = {classes.navLinks}>
+              Login
+            </Typography> :
             <Typography variant = "body1" className = {classes.navLinks}
               onClick={() => dispatch({ type: 'LOGOUT' })} 
             >
               Logout 
             </Typography>
-            </Grid>
-
-            {/* <Link to="/home" className="headerLink">
-              Home
-            </Link>
-
-            <Link to="/info" className="headerLink">
-              Info Page
-            </Link>
-            
-            <div className = "headerLink"
-            onClick={() => dispatch({ type: 'LOGOUT' })} > Logout </div> */}
-            
-          </>
-        )}
-
-              <Grid item>
-            <Typography variant = "body1" component = {Link} to = "/blogs" className = {classes.navLinks}>
-              Blogs 
-            </Typography>
-            </Grid>
-            <Grid item>
-            <Typography variant = "body1" component = {Link} to = "/about" className = {classes.navLinks}>
-              About
-            </Typography>
+            }
             </Grid>
             </Grid>
 

@@ -29,7 +29,7 @@ function LoginForm() {
   }; // end login
 
   return (  
-    <Grid container direction="column" alignContent="center" spacing={2} style={{marginTop:"2rem",marginBottom:"1rem"}}>
+    <Grid container direction="column" alignContent="center" spacing={2} style={{marginTop:"10rem",marginBottom:"1rem"}}>
 
     <Grid item>
     <Typography variant="h5">Login</Typography>

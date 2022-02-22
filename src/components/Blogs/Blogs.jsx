@@ -23,6 +23,8 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import PropTypes from 'prop-types';
 import TablePagination from '@mui/material/TablePagination';
+import expandIcon from '../../assets/expandIcon.png'
+var moment = require('moment')
 
 
 const ExpandMore = styled((props) => {
@@ -169,26 +171,19 @@ const Blogs = () => {
         <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: orange[700] }} aria-label="recipe">
+            <Avatar style={{backgroundColor: '#1C7ED6'}} aria-label="recipe">
               {post.post_author[0]}
             </Avatar>
           }
           
           title={typeof (post.post_title.charAt(0)) === "string" ?
           post.post_title.charAt(0).toUpperCase() + post.post_title.slice(1) : post.post_title}
-          subheader={`Posted On : ${post.post_date.split("T")[0]}`}
+          subheader={`Author: ${typeof (post.post_title.charAt(0)) === "string" ?
+          post.post_author.charAt(0).toUpperCase() + post.post_author.slice(1) : post.post_author}`}
 
-          titleTypographyProps={{variant:'body1' }}
-          subheaderTypographyProps={{variant:'subtitle' }}
+          titleTypographyProps={{variant:'h6' }}
+          subheaderTypographyProps={{variant:'subtitle2' }}
           >
-            
-            {/* <Typography variant="body1" color="text.secondary"> 
-                {post.post_title}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-                
-                {`Posted On : ${post.post_date.split("T")[0]}`}
-          </Typography> */}
 
           </CardHeader>
         
@@ -198,20 +193,20 @@ const Blogs = () => {
           image={post.post_image_url}
           alt={post.post_title}
         />
-        <CardContent>
+        <CardContent style={{padding:10}}>
           <Typography variant="body1" color="text.secondary">
-                
-                {`Posted by ${post.post_author}`}
+          {moment(post.post_date.split("T")[0]).format('MMMM Do YYYY')}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions disableSpacing style={{padding:0}}>
           <ExpandMore
             expand={expandId === post.id}
             onClick={()=>{handleExpandClick(post.id)}}
             aria-expanded={expandId === post.id}
             aria-label="show more"
           >
-            <ExpandMoreIcon />
+            {/* <ExpandMoreIcon /> */}
+            <img src={expandIcon} alt="expand icon" />
           </ExpandMore>
         </CardActions>
         <Collapse in={expandId === post.id} timeout="auto" unmountOnExit>
@@ -234,6 +229,7 @@ const Blogs = () => {
                  rowsPerPage={rowsPerPage}
                  page={page} 
                  SelectProps={{
+                    
                    inputProps: {
                      'aria-label': 'Results per page'
                    },

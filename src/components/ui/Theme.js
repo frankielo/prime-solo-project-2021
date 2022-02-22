@@ -1,9 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
 
-const arcBlue = "#33a137"
+const arcBlue = "#F8F9FA"
 const arcOrange = "#FFBA60"
-const arcGrey = "#868686"
+const arcGrey = "#212529"
 
 export default createTheme({
     palette:{
@@ -19,20 +19,21 @@ export default createTheme({
         }
     },
     typography:{
+        "fontFamily": "'Montserrat', sans-serif",
       tab:{
-      fontFamily:"Raleway",
+      fontFamily:"'Montserrat', sans-serif",
       textTransform:"none",
       fontWeight:700,
       
     },
     estimate:{
-        fontFamily:"Pacifico",
+        fontFamily:"'Montserrat', sans-serif",
         fontSize:"1rem",
         textTransform:"none",
         color:"white"
     },
     h2:{
-        fontFamily: "Raleway",
+        fontFamily: "'Montserrat', sans-serif",
         fontWeight:700,
         fontSize:"2.5rem",
         color:arcBlue,
@@ -66,13 +67,15 @@ export default createTheme({
     },
     subtitle2:{
         fontSize:"1.25rem",
-        fontWeight:300,
+        fontFamily: "'Montserrat', sans-serif",
+        fontWeight:500,
         color:"white"     
     },
     body1:{
         fontSize:"1.25rem",
         fontFamily: "'Montserrat', sans-serif",
-        fontWeight:400
+        fontWeight:400,
+        color:"#212529"
     },
     learnButton:{
         borderColor:arcBlue,
@@ -89,6 +92,47 @@ export default createTheme({
         color:arcGrey
     }
 },
+components: {
+MuiButton: {
+    variants: [
+      {
+        props: { variant: 'contained' },
+        style: {
+          backgroundColor: "#1C7ED6",
+          color:"white"
+        },
+      }
+    ],
+  },
+  MuiTextField: {
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: {
+            borderColor: `black !important`,
+            borderWidth: '0.1px'
+        },
+      }
+    ],
+  },
+  MuiInputLabel : {
+    variants: [
+        {
+          props: { variant: 'outlined' },
+          style: {
+                color: 'black !important' 
+          },
+        }
+      ]
+  }
+}
+// overrides: {
+//     MuiButton: {
+//         root:{
+//         color: 'blue'
+//         }
+//     },
+//   }
 // overrides: {
     // MuiInputLabel:{
     //     root:{

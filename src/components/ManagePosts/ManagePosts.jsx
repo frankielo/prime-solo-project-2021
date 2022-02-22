@@ -19,12 +19,12 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios'
 import swal from 'sweetalert';
 import {Link} from 'react-router-dom'
-import './ManagePosts.css'
+import styles from './ManagePosts.module.css'
+import editIcon from '../../assets/editIcon.png'
+import deleteIcon from '../../assets/deleteIcon.png'
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -94,11 +94,16 @@ TablePaginationActions.propTypes = {
 
 const useStyles = makeStyles({
   tableHead : {
-    backgroundColor : "orange",
+    backgroundColor : "#1C7ED6"
   },
   tableCell : {
     color:"white",
     fontWeight : "bold"
+  },
+  tableRow: {
+    "& td": {
+      color: "white !important"
+    }
   }
 });
 
@@ -177,8 +182,8 @@ export default function ManagePosts() {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
 
       <TableHead className={classes.tableHead}>
-          <TableRow>
-            <TableCell>Title</TableCell>
+          <TableRow className={styles.tableHead}>
+            <TableCell >Title</TableCell>
             <TableCell >Author</TableCell>
             <TableCell >Date</TableCell>
             <TableCell >Image</TableCell>
@@ -206,7 +211,7 @@ export default function ManagePosts() {
                 {row.post_date.split('T')[0]}
               </TableCell>
               <TableCell style={{ width: 80 }} >
-                <img src={row.post_image_url} alt={row.post_title} width="50" className="zoom"/>
+                <img src={row.post_image_url} alt={row.post_title} width="50" className={styles.zoom}/>
               </TableCell>
               <TableCell style={{ width: 160 }}>
                 {row.post_content}
@@ -219,12 +224,12 @@ export default function ManagePosts() {
               </TableCell>
               <TableCell style={{ width: 80 }} >
               <IconButton onClick={()=>{onDeleteHandler(row.id)}}>
-                  <DeleteIcon />
+                  <img src={deleteIcon} alt="Delete icon" />
               </IconButton>
               </TableCell>
               <TableCell style={{ width: 80 }} >
               <IconButton onClick={()=>onEditHandler(row)} component={Link} to={'/postform'}>
-                  <EditIcon />
+                  <img src={editIcon} alt="Edit Icon" />
               </IconButton>
               </TableCell>
               

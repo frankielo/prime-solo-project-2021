@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TextField from '@mui/material/TextField'
+import {TextField,Typography} from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 
@@ -23,9 +23,9 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-      <Grid container direction="column" spacing={2} alignContent="center">
+      <Grid container direction="column" spacing={2} alignContent="center" style={{marginTop:"10rem"}}>
         <Grid item>
-      <h2>Register User</h2>
+        <Typography variant="h5">Register</Typography>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -63,4 +63,3 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
-
